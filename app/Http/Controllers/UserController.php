@@ -30,4 +30,11 @@ class UserController extends Controller
             'token'=>$token,
         ],201);
     }
+
+    public function logout(){
+        auth()->user()->tokens()->delete();
+        return response([
+            'message' => 'Successfully logged out!!'
+        ],200);
+    }
 }
