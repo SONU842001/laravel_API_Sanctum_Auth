@@ -45,8 +45,8 @@ Route::post('/login',[UserController::class,'login']);
 // partially protected API
 
 //PUBLIC  ALL get route will be public
-Route::get('/students',[StudentController::class,'index']);
-Route::get('/students/{id}',[StudentController::class,'show']);
+// Route::get('/students',[StudentController::class,'index']);
+// Route::get('/students/{id}',[StudentController::class,'show']);
 Route::get('/students/search/{city}',[StudentController::class,'search']);
 //PROTECTED
 
@@ -60,6 +60,9 @@ Route::middleware(['auth:sanctum'])->group(function(){
 });
 
 
+// Craeting single route for all resources
+
+Route::resource('students', UserController::class);
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
