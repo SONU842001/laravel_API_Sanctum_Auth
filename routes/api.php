@@ -32,17 +32,32 @@ Route::post('/login',[UserController::class,'login']);
 // Route::middleware('auth:sanctum')->get('/students/{id}',[StudentController::class,'show']);
 
 // grouping all routes, Here all API route is protected
+// Route::middleware(['auth:sanctum'])->group(function(){
+//     Route::get('/students',[StudentController::class,'index']);
+//     Route::get('/students/{id}',[StudentController::class,'show']);
+//     Route::post('/students',[StudentController::class,'store']);
+//     Route::put('/students/{id}',[StudentController::class,'update']);
+//     Route::delete('/students/{id}',[StudentController::class,'destroy']);
+//     Route::get('/students/search/{city}',[StudentController::class,'search']);
+//     Route::post('/logout', [UserController::class,'logout']);
+// });
+
+// partially protected API
+
+//PUBLIC  ALL get route will be public
+Route::get('/students',[StudentController::class,'index']);
+Route::get('/students/{id}',[StudentController::class,'show']);
+Route::get('/students/search/{city}',[StudentController::class,'search']);
+//PROTECTED
+
 Route::middleware(['auth:sanctum'])->group(function(){
-    Route::get('/students',[StudentController::class,'index']);
-    Route::get('/students/{id}',[StudentController::class,'show']);
+
     Route::post('/students',[StudentController::class,'store']);
     Route::put('/students/{id}',[StudentController::class,'update']);
     Route::delete('/students/{id}',[StudentController::class,'destroy']);
-    Route::get('/students/search/{city}',[StudentController::class,'search']);
+
     Route::post('/logout', [UserController::class,'logout']);
 });
-
-
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
